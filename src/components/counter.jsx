@@ -11,8 +11,8 @@ class Counter extends Component {
 
   render() {
     return (
-      <div>
-        <h1 id="demo">Please provide access to your location!</h1>
+      <div id="main" className="col-xs-1" align="center">
+        <h1 id="locationIndicator">Please provide access to your location!</h1>
       </div>
     );
   }
