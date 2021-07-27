@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.css";
-import Counter from "./components/counter";
-import getWeatherInfo from "./weatherInfo/getWeatherInfo";
+import Background from "./components/background";
+import getWeatherInfo from "./api/getWeatherInfo";
 
-ReactDOM.render(<Counter />, document.getElementById("root"));
+ReactDOM.render(<Background />, document.getElementById("root"));
 getWeatherInfo();

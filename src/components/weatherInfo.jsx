@@ -1,14 +1,6 @@
 import React, { Component } from "react";
 
-// fetch("https://api.ipgeolocation.io/getip")
-//   .then((response) => response.json())
-//   .then((data) => console.log(data));
-
-class Counter extends Component {
-  state = {
-    count: 0,
-  };
-
+class WeatherInfo extends Component {
   render() {
     return (
       <div id="main" className="col-xs-1" align="center">
@@ -18,4 +10,4 @@ class Counter extends Component {
   }
 }
 
-export default Counter;
+export default WeatherInfo;
