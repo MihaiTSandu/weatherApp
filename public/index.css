@@ -15,5 +15,10 @@ body {
 }
 
 #main {
-    padding-top: 16%;
+    padding-top: 12%;
+}
+
+.weather-button {
+  margin-left: 1%;
+  margin-right: 1%;
 }
