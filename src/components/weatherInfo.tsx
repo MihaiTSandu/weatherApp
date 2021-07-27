@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 
-
 class WeatherInfo extends Component {
 
 
   handleSave = ():void => {
 
-    if (document.getElementById("locationIndicator")?.innerHTML !== "Please provide access to your location!")
+    if (document.getElementById("locationIndicator")?.innerHTML !== "Please provide access to your location!" )
     {
 
     let location = document.getElementById("locationIndicator")?.innerHTML;

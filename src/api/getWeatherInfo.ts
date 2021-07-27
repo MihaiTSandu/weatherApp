@@ -13,11 +13,6 @@ let getWeatherInfo = () => {
   }
 
   function showPosition(position: any): void {
-    locationIndicator!.innerHTML =
-      "Latitude: " +
-      position.coords.latitude +
-      "<br>Longitude: " +
-      position.coords.longitude;
     openWeatherMap += `?lat=${position.coords.latitude}&lon=${position.coords.longitude}&APPID=${apiID}`;
     callWeatherAPI();
   }
@@ -38,6 +33,7 @@ let getWeatherInfo = () => {
       data.main.temp
     )}°C`;
     document.getElementById("feelsLike")!.innerHTML = `Feels like ${convertToCelsius(data.main.feels_like)}°C`;
+
   };
 
   let convertToCelsius = (kelvinTemp: number) => {
