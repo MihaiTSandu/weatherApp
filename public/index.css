@@ -23,3 +23,10 @@ body {
   margin-right: 1%;
 }
 
+#upperNav {
+  height: 20px;
+}
+
+#autocompleteList {
+  height: 20px;
+}

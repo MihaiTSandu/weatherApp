@@ -3,8 +3,8 @@ import React, { Component } from "react";
 class SearchBar extends Component {
   render() {
     return (
-      <div>
-        <nav className="navbar navbar-light bg-light">
+      <div id="upperDiv">
+        <nav id="upperNav"className="navbar navbar-light bg-light">
           <button className="btn btn-info">Locations</button>
           <form className="form-inline mr-auto ml-auto">
             <div className="autocompleteDiv">
@@ -15,8 +15,8 @@ class SearchBar extends Component {
                 placeholder="Search"
                 aria-label="Search"
               />
-            </div>
             <div id="map"></div>
+            </div>
             <button className="btn btn-info my-2 my-sm-0" type="submit">List
               Search
             </button>
