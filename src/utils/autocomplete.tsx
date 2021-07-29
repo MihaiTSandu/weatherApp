@@ -3,46 +3,6 @@ import info from "./cities.json";
 let cities: [];
 cities = info as [];
 
-
-// const matchList = document.getElementById("match-list");
-// const search = document.getElementById("search") as HTMLInputElement;
-// console.log();
-
-// search.addEventListener('input', () => searchCity(search.value));
-
-// // Show suggestions in HTML
-// const outputHTML = matches => {
-//     if (matches.length > 0) {
-//         const html = matches.map(match => `
-//                 <div>
-//                 <h4>${match.name}</h4>
-//                 </div> 
-//             `).join('');
-
-//         matchList.innerHTML = html;
-//     }
-// }
-
-// Search cities.json
-// const searchCity = searchText => {
-// const response = await fetch('./cities.json');
-// console.log(response)
-// const cities = await response.json();
-// console.log(cities + " cities");
-
-// Get matches to the text input
-//     let matches = cities.filter(city => {
-//         const regex = new RegExp(`^${searchText}`, 'gi');
-//         return city.name.match(regex) || city.abbr.match(regex);
-//     });
-
-//     if (searchText.length === 0) {
-//         matches = [];
-//     }
-
-//     outputHTML(matches);
-// };
-
 function autoComplete(inp, arr) {
     /*the autocomplete function takes two arguments,
       the text field element and an array of possible autocompleted values:*/
@@ -95,7 +55,7 @@ function autoComplete(inp, arr) {
     });
     /*execute a function presses a key on the keyboard:*/
     inp.addEventListener("keydown", function (e) {
-      var x = document.getElementById(this.id + "autocomplete-list");
+      var x = document.getElementById("autocomplete-list");
       if (x) x = x.getElementsByTagName("div") as unknown as HTMLInputElement;
       if (e.keyCode === 40) {
         /*If the arrow DOWN key is pressed,
