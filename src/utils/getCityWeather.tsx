@@ -1,6 +1,6 @@
 let apiID = "82e70c9d0331d48505795b7409a04db9";
 
-let updateComponent = (data, locationIndicator) => {
+let updateComponent = (data: any, locationIndicator: any) => {
   locationIndicator!.innerHTML = data.name;
   document.getElementById("temperatureDisplay")!.innerHTML = `${convertToCelsius(
     data.main.temp
@@ -13,7 +13,7 @@ return Math.floor(kelvinTemp - 273.15);
 };
 
 
-let getCityWeatherInfo = (cityName) => {
+let getCityWeatherInfo = (cityName: string) => {
   let locationIndicator = document.getElementById("locationIndicator");
   let openWeatherMap = "http://api.openweathermap.org/data/2.5/weather";
 

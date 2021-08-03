@@ -29,7 +29,7 @@ let getLocalWeatherInfo = () => {
   
 };
 
-  let updateComponent = (data, locationIndicator) => {
+  let updateComponent = (data: any, locationIndicator: any) => {
     locationIndicator!.innerHTML = data.name;
     document.getElementById("temperatureDisplay")!.innerHTML = `${convertToCelsius(
       data.main.temp

@@ -3,12 +3,12 @@ import info from "./cities.json";
 let cities: [];
 cities = info as [];
 
-function autoComplete(inp, arr) {
+function autoComplete(inp: any, arr: any) {
     /*the autocomplete function takes two arguments,
       the text field element and an array of possible autocompleted values:*/
-    var currentFocus;
+    var currentFocus = 0;
     /*execute a function when someone writes in the text field:*/
-    inp.addEventListener("input", function (e) {
+    inp.addEventListener("input", function (this: any, e: any) {
       var a,
         b,
         i,
@@ -18,7 +18,7 @@ function autoComplete(inp, arr) {
       if (!val) {
         return false;
       }
-      currentFocus = -1;
+      currentFocus= -1;
       /*create a DIV element that will contain the items (values):*/
       a = document.createElement("DIV");
       a.setAttribute("id", "autocomplete-list");
@@ -54,7 +54,7 @@ function autoComplete(inp, arr) {
       }
     });
     /*execute a function presses a key on the keyboard:*/
-    inp.addEventListener("keydown", function (e) {
+    inp.addEventListener("keydown", function (e: any) {
       var x = document.getElementById("autocomplete-list");
       if (x) x = x.getElementsByTagName("div") as unknown as HTMLInputElement;
       if (e.keyCode === 40) {
@@ -75,11 +75,11 @@ function autoComplete(inp, arr) {
         e.preventDefault();
         if (currentFocus > -1) {
           /*and simulate a click on the "active" item:*/
-          if (x) x[currentFocus].click();
+          if (x) (x as any)[currentFocus].click();
         }
       }
     });
-    function addActive(x) {
+    function addActive(x: any) {
       /*a function to classify an item as "active":*/
       if (!x) return false;
       /*start by removing the "active" class on all items:*/
@@ -89,19 +89,19 @@ function autoComplete(inp, arr) {
       /*add class "autocomplete-active":*/
       x[currentFocus].classList.add("autocomplete-active");
     }
-    function removeActive(x) {
+    function removeActive(x: any) {
       /*a function to remove the "active" class from all autocomplete items:*/
       for (var i = 0; i < x.length; i++) {
         x[i].classList.remove("autocomplete-active");
       }
     }
-    function closeAllLists(elmnt?) {
+    function closeAllLists(elmnt?: any) {
       /*close all autocomplete lists in the document,
               except the one passed as an argument:*/
       var x = document.getElementsByClassName("autocomplete-items");
       for (var i = 0; i < x.length; i++) {
         if (elmnt !== x[i] && elmnt !== inp) {
-          x[i].parentNode.removeChild(x[i]);
+          x[i].parentNode!.removeChild(x[i]);
         }
       }
     }
