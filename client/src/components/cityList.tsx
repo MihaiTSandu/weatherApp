@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {gql} from 'apollo-boost';
 import { graphql } from "react-apollo";
 
-const getBooksQuery = gql`
+const getCityQuery = gql`
 {
   city {
     name
@@ -14,15 +14,16 @@ const getBooksQuery = gql`
 
 class CityList extends Component {
     render() {
-      console.log(this.props);
+      // console.log(this.props);
       return (
         <div id="CityList-Image">
             <ul>
-                <li>Book Name</li>
+                <li>City Name</li>
             </ul>
         </div>
       );
     }
   }
   
-  export default graphql(getBooksQuery)(CityList);
+  export default graphql(getCityQuery)(CityList);
+  // export default CityList;

@@ -7,21 +7,21 @@ import CityList from "./cityList";
 
 // Setup apollo client
 
-const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
-});
+// const client = new ApolloClient({
+//   uri: "http://localhost:4000/graphql",
+// });
 
 
 class Background extends Component {
   render() {
     return (
-      <ApolloProvider client={client}>
+      // <ApolloProvider client={}>
       <div id="Background-Image">
-        {/* <CityList/> */}
+        <CityList/>
         <SearchBar />
         <WeatherInfo />
       </div>
-      </ApolloProvider>
+      // </ApolloProvider>
     );
   }
 }
