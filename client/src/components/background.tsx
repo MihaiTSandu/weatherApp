@@ -1,9 +1,7 @@
-import React, { Component } from "react";
-import WeatherInfo from "./weatherInfo";
-import SearchBar from "./searchBar";
-import { ApolloProvider } from "react-apollo";
-import ApolloClient from "apollo-boost";
+import React from "react";
 import CityList from "./cityList";
+import SearchBar from "./searchBar";
+import WeatherInfo from "./weatherInfo";
 
 // Setup apollo client
 
@@ -11,19 +9,16 @@ import CityList from "./cityList";
 //   uri: "http://localhost:4000/graphql",
 // });
 
-
-class Background extends Component {
-  render() {
-    return (
-      // <ApolloProvider client={}>
-      <div id="Background-Image">
-        <CityList/>
-        <SearchBar />
-        <WeatherInfo />
-      </div>
-      // </ApolloProvider>
-    );
-  }
+function Background() {
+  return (
+    // <ApolloProvider client={}>
+    <div id="Background-Image">
+      <CityList />
+      <SearchBar />
+      <WeatherInfo />
+    </div>
+    // </ApolloProvider>
+  );
 }
 
 export default Background;
