@@ -41,10 +41,17 @@ class City {
 
 // Maps username to name
 var fakeDatabase = {};
-let count = 1;
 
 var root = {
   getCity: ({ id }) => {
+    fs.readFile("savedCities.json", "utf-8", (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(JSON.parse(data));
+        fakeDatabase = JSON.parse(data);
+      }
+    });
     if (!fakeDatabase[id]) {
       throw new Error("no City exists with id " + id);
     }
@@ -53,10 +60,20 @@ var root = {
   createCity: ({ input }) => {
     // Create a random id for our "database".
     // var id = require("crypto").randomBytes(10).toString("hex");
-    var id = count;
-    count++;
+    fs.readFile("savedCities.json", "utf-8", async (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(JSON.parse(data));
+        fakeDatabase = JSON.parse(data);
+      }
+    });
+    console.log(fakeDatabase);
+    const id = Object.keys(fakeDatabase).length + 1;
 
     fakeDatabase[id] = input;
+    fs.writeFile("savedCities.json", JSON.stringify(fakeDatabase), () => {});
+
     return new City(id, input);
   },
   updateCity: ({ id, input }) => {

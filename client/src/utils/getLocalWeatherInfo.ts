@@ -7,15 +7,14 @@ let getLocalWeatherInfo = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
     } else {
-      locationIndicator!.innerHTML =
-        "Geolocation is not supported by this browser.";
-    }
-  }
+      locationIndicator!.innerHTML = "Geolocation is not supported by this browser.";
+    };
+  };
 
   function showPosition(position: any): void {
     openWeatherMap += `?lat=${position.coords.latitude}&lon=${position.coords.longitude}&APPID=${apiID}`;
     callWeatherAPI();
-  }
+  };
   getLocation();
 
   let data: any;

@@ -11,10 +11,10 @@ const getCityQuery = gql`
   }
 `;
 
-function CityList(props: any) {
-  console.log(props);
-  const { loading, error, data } = useQuery(getCityQuery);
+export default function CityList() {
+  const { data } = useQuery(getCityQuery);
   console.log(data);
+
   return (
     <div id="CityList-Image">
       <ul>
@@ -23,6 +23,3 @@ function CityList(props: any) {
     </div>
   );
 }
-
-// export default graphql(getCityQuery)(CityList);
-export default CityList;
