@@ -1,6 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+let apiID = "82e70c9d0331d48505795b7409a04db9";
+let openWeatherMap = "http://api.openweathermap.org/data/2.5/weather";
+
+let convertToCelsius = (kelvinTemp: string) => {
+  return Math.floor(parseFloat(kelvinTemp) - 273.15);
+};
 
 function WeatherInfo() {
+  useEffect(() => {
+    getLocalWeatherInfo();
+  }, []);
+  let [temperature, setTemperature] = useState("");
+  let [location, setLocation] = useState(
+    "Please provide acces to your location!"
+  );
+  let [feelsLike, setFeelsLike] = useState("");
+
+  let getLocalWeatherInfo = () => {
+    let locationIndicator = document.getElementById("locationIndicator");
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        locationIndicator!.innerHTML =
+          "Geolocation is not supported by this browser.";
+      }
+    }
+
+    function showPosition(position: any): void {
+      openWeatherMap += `?lat=${position.coords.latitude}&lon=${position.coords.longitude}&APPID=${apiID}`;
+      callWeatherAPI();
+    }
+    getLocation();
+
+    let data: any;
+
+    let callWeatherAPI = async () => {
+      let response = await fetch(openWeatherMap);
+      data = await response.json();
+      console.log(data);
+      setTemperature(convertToCelsius(data.main.temp) + "°C");
+      setFeelsLike(convertToCelsius(data.main.feels_like) + "°C");
+      setLocation(data.name);
+    };
+  };
+
   const handleSave = (): void => {
     if (
       document.getElementById("locationIndicator")?.innerHTML !==
@@ -14,14 +59,15 @@ function WeatherInfo() {
       );
     }
   };
+
   return (
     <div id="main" className="col-xs-1 text-center">
-      <h1 id="locationIndicator">Please provide access to your location!</h1>
+      <h1 id="locationIndicator">{location}</h1>
       <div id="weatherContainer">
         <h2>
-          <b id="temperatureDisplay"></b>
+          <b id="temperatureDisplay">{temperature}</b>
         </h2>
-        <p id="feelsLike"></p>
+        <p id="feelsLike">{feelsLike}</p>
       </div>
       <button onClick={handleSave} className="btn btn-info">
         Save Location

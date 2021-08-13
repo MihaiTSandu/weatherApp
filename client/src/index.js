@@ -15,6 +15,3 @@ ReactDOM.render(
   </ApolloProvider>,
   document.getElementById("root")
 );
-
-getLocalWeatherInfo();
-Autocomplete();
