@@ -1,4 +1,4 @@
-import info from "./cities.json";
+import info from "cities.json";
 
 let cities: [];
 cities = info as [];

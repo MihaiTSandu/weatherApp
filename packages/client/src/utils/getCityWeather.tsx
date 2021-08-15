@@ -6,7 +6,7 @@ let getCityWeatherInfo = (cityName: string) => {
   let locationIndicator = document.getElementById("locationIndicator");
   let openWeatherMap = "http://api.openweathermap.org/data/2.5/weather";
 
-  openWeatherMap += `?q=${cityName}&APPID=${process.env.OPEN_WEATHER_API_KEY}`;
+  openWeatherMap += `?q=${cityName}&APPID=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`;
 
   let data: any;
 
