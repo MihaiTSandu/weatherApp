@@ -29,9 +29,19 @@ var schema = buildSchema(`
   }
 `);
 
+interface ICityInfo {
+  name: string;
+  latitude: number;
+  longitude: number;
+}
+
 // If City had any complex fields, we'd put them on this object.
 class City {
-  constructor(id, { name, latitude, longitude }) {
+  name: ICityInfo["name"];
+  latitude: ICityInfo["latitude"];
+  longitude: ICityInfo["longitude"];
+
+  constructor(public id: any, { name, latitude, longitude }: ICityInfo) {
     this.id = id;
     this.name = name;
     this.latitude = latitude;
