@@ -1,4 +1,6 @@
-let apiID = "82e70c9d0331d48505795b7409a04db9";
+import api from "../utils/api.json";
+
+let apiID = api.openWeatherAPIKey;
 
 let convertToCelsius = (kelvinTemp: number) => {
   return Math.floor(kelvinTemp - 273.15);

@@ -1,11 +1,14 @@
-import React from "react";
-import getCityWeatherInfo from "../utils/getCityWeather";
+import React, { useRef } from "react";
 
 function SearchBar() {
+  // const [cityInput, setCityInput] = useState("");
+  const cityInput = useRef(null);
+
   const searchLocation = () => {
-    getCityWeatherInfo(
-      `${(document.getElementById("search") as HTMLInputElement).value}`
-    );
+    // getCityWeatherInfo(
+    // `${(document.getElementById("search") as HTMLInputElement).value}`
+    // );
+    console.log(cityInput.current.value);
     return false;
   };
 
@@ -19,6 +22,7 @@ function SearchBar() {
               id="search"
               className="form-control mr-sm-2 controls"
               type="text"
+              ref={cityInput}
               placeholder="Search"
               aria-label="Search"
             />

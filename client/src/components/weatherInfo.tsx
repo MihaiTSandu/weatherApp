@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import api from "../utils/api.json";
 
-let apiID = "82e70c9d0331d48505795b7409a04db9";
+const apiID = api.openWeatherAPIKey;
 let openWeatherMap = "http://api.openweathermap.org/data/2.5/weather";
 
 let convertToCelsius = (kelvinTemp: string) => {
@@ -11,11 +12,11 @@ function WeatherInfo() {
   useEffect(() => {
     getLocalWeatherInfo();
   }, []);
-  let [temperature, setTemperature] = useState("");
-  let [location, setLocation] = useState(
+  const [temperature, setTemperature] = useState("");
+  const [location, setLocation] = useState(
     "Please provide acces to your location!"
   );
-  let [feelsLike, setFeelsLike] = useState("");
+  const [feelsLike, setFeelsLike] = useState("");
 
   let getLocalWeatherInfo = () => {
     let locationIndicator = document.getElementById("locationIndicator");
