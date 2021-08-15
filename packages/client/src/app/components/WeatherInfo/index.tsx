@@ -1,75 +1,63 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import styled from 'styled-components/macro';
+import getCityWeather from 'utils/get-city-weather';
 
-let openWeatherMap = 'http://api.openweathermap.org/data/2.5/weather';
+export interface IWeatherInfoProps {
+  latitude?: string;
+  longitude?: string;
+}
 
-const convertToCelsius = (kelvinTemp: string) =>
-  Math.floor(parseFloat(kelvinTemp) - 273.15);
+export default function WeatherInfo({
+  latitude,
+  longitude,
+}: IWeatherInfoProps) {
+  const [temperature, setTemperature] = useState<number>();
+  const [feelsLike, setFeelsLike] = useState<number>();
+  const [location, setLocation] = useState<string>();
 
-export default function WeatherInfo() {
+  const getLocalWeatherInfo = useCallback(async () => {
+    const data = await getCityWeather(latitude, longitude);
+
+    setTemperature(data.main.temp);
+    setFeelsLike(data.main.feels_like);
+    setLocation(data.name);
+  }, [latitude, longitude]);
+
   useEffect(() => {
     getLocalWeatherInfo();
-  }, []);
-  const [temperature, setTemperature] = useState('');
-  const [location, setLocation] = useState(
-    'Please provide acces to your location!',
-  );
-  const [feelsLike, setFeelsLike] = useState('');
+  }, [getLocalWeatherInfo]);
 
-  let getLocalWeatherInfo = () => {
-    function getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-      } else {
-        setLocation('Geolocation is not supported by this browser.');
-      }
-    }
-
-    function showPosition(position: any): void {
-      console.log(process.env.REACT_APP_OPEN_WEATHER_API_KEY);
-      openWeatherMap += `?lat=${position.coords.latitude}&lon=${position.coords.longitude}&APPID=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`;
-      callWeatherAPI();
-    }
-    getLocation();
-
-    let data: any;
-
-    let callWeatherAPI = async () => {
-      const response = await fetch(openWeatherMap);
-      data = await response.json();
-      console.log(data);
-      setTemperature(`${convertToCelsius(data.main.temp)}°C`);
-      setFeelsLike(`${convertToCelsius(data.main.feels_like)}°C`);
-      setLocation(data.name);
-    };
-  };
-
-  const handleSave = (): void => {
-    if (
-      document.getElementById('locationIndicator')?.innerHTML !==
-      'Please provide access to your location!'
-    ) {
-      const locationElement =
-        document.getElementById('locationIndicator')?.innerHTML;
-      console.log(locationElement);
-    } else {
-      console.log(
-        'First you need to provide a location, then you can save it.',
-      );
-    }
+  const handleSave = () => {
+    // TODO: implement
   };
 
   return (
-    <div id="main" className="col-xs-1 text-center">
-      <h1 id="locationIndicator">{location}</h1>
-      <div id="weatherContainer">
+    <WeatherInfoContainer>
+      <h1>{location || <Skeleton width={300} />}</h1>
+      <div>
         <h2>
-          <b id="temperatureDisplay">{temperature}</b>
+          <b>
+            {temperature ? (
+              `${temperature.toFixed()}°C`
+            ) : (
+              <Skeleton width={50} />
+            )}
+          </b>
         </h2>
-        <p id="feelsLike">{feelsLike}</p>
+        <p>
+          Feels like{' '}
+          {feelsLike ? `${feelsLike.toFixed()}°C` : <Skeleton width={30} />}
+        </p>
       </div>
-      <button type="button" onClick={handleSave} className="btn btn-info">
+      <button type="button" onClick={handleSave}>
         Save Location
       </button>
-    </div>
+    </WeatherInfoContainer>
   );
 }
+
+const WeatherInfoContainer = styled.div`
+  margin: 0 1.25rem;
+  text-align: center;
+`;
