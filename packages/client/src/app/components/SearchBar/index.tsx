@@ -16,7 +16,9 @@ export default function SearchBar() {
   return (
     <div id="upperDiv">
       <nav id="upperNav" className="navbar navbar-light bg-light">
-        <button className="btn btn-info">Locations</button>
+        <button type="button" className="btn btn-info">
+          Locations
+        </button>
         <form autoComplete="off" className="form-inline mr-auto ml-auto">
           <div className="autocompleteDiv">
             <input
@@ -27,7 +29,7 @@ export default function SearchBar() {
               placeholder="Search"
               aria-label="Search"
             />
-            <div id="map"></div>
+            <div id="map" />
           </div>
           <button
             type="button"

@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 let openWeatherMap = 'http://api.openweathermap.org/data/2.5/weather';
 
-let convertToCelsius = (kelvinTemp: string) => {
-  return Math.floor(parseFloat(kelvinTemp) - 273.15);
-};
+const convertToCelsius = (kelvinTemp: string) =>
+  Math.floor(parseFloat(kelvinTemp) - 273.15);
 
 export default function WeatherInfo() {
   useEffect(() => {
@@ -35,11 +34,11 @@ export default function WeatherInfo() {
     let data: any;
 
     let callWeatherAPI = async () => {
-      let response = await fetch(openWeatherMap);
+      const response = await fetch(openWeatherMap);
       data = await response.json();
       console.log(data);
-      setTemperature(convertToCelsius(data.main.temp) + '°C');
-      setFeelsLike(convertToCelsius(data.main.feels_like) + '°C');
+      setTemperature(`${convertToCelsius(data.main.temp)}°C`);
+      setFeelsLike(`${convertToCelsius(data.main.feels_like)}°C`);
       setLocation(data.name);
     };
   };
@@ -49,8 +48,9 @@ export default function WeatherInfo() {
       document.getElementById('locationIndicator')?.innerHTML !==
       'Please provide access to your location!'
     ) {
-      let location = document.getElementById('locationIndicator')?.innerHTML;
-      console.log(location);
+      const locationElement =
+        document.getElementById('locationIndicator')?.innerHTML;
+      console.log(locationElement);
     } else {
       console.log(
         'First you need to provide a location, then you can save it.',
@@ -67,7 +67,7 @@ export default function WeatherInfo() {
         </h2>
         <p id="feelsLike">{feelsLike}</p>
       </div>
-      <button onClick={handleSave} className="btn btn-info">
+      <button type="button" onClick={handleSave} className="btn btn-info">
         Save Location
       </button>
     </div>
