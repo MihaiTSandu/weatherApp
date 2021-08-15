@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-let openWeatherMap = "http://api.openweathermap.org/data/2.5/weather";
+let openWeatherMap = 'http://api.openweathermap.org/data/2.5/weather';
 
 let convertToCelsius = (kelvinTemp: string) => {
   return Math.floor(parseFloat(kelvinTemp) - 273.15);
 };
 
-function WeatherInfo() {
+export default function WeatherInfo() {
   useEffect(() => {
     getLocalWeatherInfo();
   }, []);
-  const [temperature, setTemperature] = useState("");
+  const [temperature, setTemperature] = useState('');
   const [location, setLocation] = useState(
-    "Please provide acces to your location!"
+    'Please provide acces to your location!',
   );
-  const [feelsLike, setFeelsLike] = useState("");
+  const [feelsLike, setFeelsLike] = useState('');
 
   let getLocalWeatherInfo = () => {
     function getLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
       } else {
-        setLocation("Geolocation is not supported by this browser.");
+        setLocation('Geolocation is not supported by this browser.');
       }
     }
 
@@ -38,22 +38,22 @@ function WeatherInfo() {
       let response = await fetch(openWeatherMap);
       data = await response.json();
       console.log(data);
-      setTemperature(convertToCelsius(data.main.temp) + "°C");
-      setFeelsLike(convertToCelsius(data.main.feels_like) + "°C");
+      setTemperature(convertToCelsius(data.main.temp) + '°C');
+      setFeelsLike(convertToCelsius(data.main.feels_like) + '°C');
       setLocation(data.name);
     };
   };
 
   const handleSave = (): void => {
     if (
-      document.getElementById("locationIndicator")?.innerHTML !==
-      "Please provide access to your location!"
+      document.getElementById('locationIndicator')?.innerHTML !==
+      'Please provide access to your location!'
     ) {
-      let location = document.getElementById("locationIndicator")?.innerHTML;
+      let location = document.getElementById('locationIndicator')?.innerHTML;
       console.log(location);
     } else {
       console.log(
-        "First you need to provide a location, then you can save it."
+        'First you need to provide a location, then you can save it.',
       );
     }
   };
@@ -73,5 +73,3 @@ function WeatherInfo() {
     </div>
   );
 }
-
-export default WeatherInfo;

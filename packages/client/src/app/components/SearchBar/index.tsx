@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
-import getCityWeatherInfo from "../../../utils/getCityWeather";
+import React, { useRef } from 'react';
+import getCityWeatherInfo from '../../../utils/getCityWeather';
 
-function SearchBar() {
+export default function SearchBar() {
   const cityInput = useRef(null);
 
   const searchLocation = () => {
@@ -41,5 +41,3 @@ function SearchBar() {
     </div>
   );
 }
-
-export default SearchBar;

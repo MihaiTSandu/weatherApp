@@ -1,6 +1,6 @@
-import { useQuery } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
-import React from "react";
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import React from 'react';
 
 const getCityQuery = gql`
   {
@@ -16,7 +16,7 @@ export default function CityList() {
   console.log(data);
 
   return (
-    <div id="CityList-Image">
+    <div>
       <ul>
         <li>City Name</li>
       </ul>

@@ -1,4 +1,4 @@
-import info from "cities.json";
+import info from 'cities.json';
 
 let cities: [];
 cities = info as [];
@@ -8,7 +8,7 @@ function autoComplete(inp: any, arr: any) {
       the text field element and an array of possible autocompleted values:*/
   var currentFocus = 0;
   /*execute a function when someone writes in the text field:*/
-  inp.addEventListener("input", function (this: any, e: any) {
+  inp.addEventListener('input', function (this: any, e: any) {
     var a,
       b,
       i,
@@ -20,9 +20,9 @@ function autoComplete(inp: any, arr: any) {
     }
     currentFocus = -1;
     /*create a DIV element that will contain the items (values):*/
-    a = document.createElement("DIV");
-    a.setAttribute("id", "autocomplete-list");
-    a.setAttribute("class", "autocomplete-items");
+    a = document.createElement('DIV');
+    a.setAttribute('id', 'autocomplete-list');
+    a.setAttribute('class', 'autocomplete-items');
     /*append the DIV element as a child of the autocomplete container:*/
     this.parentNode.appendChild(a);
     let count = 0;
@@ -33,18 +33,18 @@ function autoComplete(inp: any, arr: any) {
         arr[i].name.substr(0, val.length).toUpperCase() === val.toUpperCase()
       ) {
         /*create a DIV element for each matching element:*/
-        b = document.createElement("DIV");
+        b = document.createElement('DIV');
         count++;
         /*make the matching letters bold:*/
         b.innerHTML =
-          "<strong>" + arr[i].name.substr(0, val.length) + "</strong>";
+          '<strong>' + arr[i].name.substr(0, val.length) + '</strong>';
         b.innerHTML += arr[i].name.substr(val.length);
         /*insert a input field that will hold the current array item's value:*/
         b.innerHTML += "<input type='hidden' value='" + arr[i].name + "'>";
         /*execute a function when someone clicks on the item value (DIV element):*/
-        b.addEventListener("click", function (e) {
+        b.addEventListener('click', function (e) {
           /*insert the value for the autocomplete text field:*/
-          inp.value = this.getElementsByTagName("input")[0].value;
+          inp.value = this.getElementsByTagName('input')[0].value;
           /*close the list of autocompleted values,
                         (or any other open lists of autocompleted values:*/
           closeAllLists();
@@ -57,9 +57,9 @@ function autoComplete(inp: any, arr: any) {
     }
   });
   /*execute a function presses a key on the keyboard:*/
-  inp.addEventListener("keydown", function (e: any) {
-    var x = document.getElementById("autocomplete-list");
-    if (x) x = x.getElementsByTagName("div") as unknown as HTMLInputElement;
+  inp.addEventListener('keydown', function (e: any) {
+    var x = document.getElementById('autocomplete-list');
+    if (x) x = x.getElementsByTagName('div') as unknown as HTMLInputElement;
     if (e.keyCode === 40) {
       /*If the arrow DOWN key is pressed,
                   increase the currentFocus variable:*/
@@ -90,18 +90,18 @@ function autoComplete(inp: any, arr: any) {
     if (currentFocus >= x.length) currentFocus = 0;
     if (currentFocus < 0) currentFocus = x.length - 1;
     /*add class "autocomplete-active":*/
-    x[currentFocus].classList.add("autocomplete-active");
+    x[currentFocus].classList.add('autocomplete-active');
   }
   function removeActive(x: any) {
     /*a function to remove the "active" class from all autocomplete items:*/
     for (var i = 0; i < x.length; i++) {
-      x[i].classList.remove("autocomplete-active");
+      x[i].classList.remove('autocomplete-active');
     }
   }
   function closeAllLists(elmnt?: any) {
     /*close all autocomplete lists in the document,
               except the one passed as an argument:*/
-    var x = document.getElementsByClassName("autocomplete-items");
+    var x = document.getElementsByClassName('autocomplete-items');
     for (var i = 0; i < x.length; i++) {
       if (elmnt !== x[i] && elmnt !== inp) {
         x[i].parentNode!.removeChild(x[i]);
@@ -109,12 +109,12 @@ function autoComplete(inp: any, arr: any) {
     }
   }
   /*execute a function when someone clicks in the document:*/
-  document.addEventListener("click", function (e) {
+  document.addEventListener('click', function (e) {
     closeAllLists(e.target);
   });
 }
 let autocomplete = () => {
-  autoComplete(document.getElementById("search"), cities);
+  autoComplete(document.getElementById('search'), cities);
 };
 
 export default autocomplete;
