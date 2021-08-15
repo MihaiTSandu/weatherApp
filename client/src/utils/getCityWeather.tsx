@@ -18,7 +18,6 @@ let getCityWeatherInfo = (cityName: string) => {
     let response = await fetch(openWeatherMap);
     data = await response.json();
     console.log(data);
-    // updateComponent(data, locationIndicator);
   };
 
   callWeatherAPI();

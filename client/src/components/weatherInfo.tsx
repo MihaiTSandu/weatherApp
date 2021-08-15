@@ -19,13 +19,11 @@ function WeatherInfo() {
   const [feelsLike, setFeelsLike] = useState("");
 
   let getLocalWeatherInfo = () => {
-    let locationIndicator = document.getElementById("locationIndicator");
     function getLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
       } else {
-        locationIndicator!.innerHTML =
-          "Geolocation is not supported by this browser.";
+        setLocation("Geolocation is not supported by this browser.");
       }
     }
 

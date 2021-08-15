@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
+import getCityWeatherInfo from "../utils/getCityWeather";
 
 function SearchBar() {
-  // const [cityInput, setCityInput] = useState("");
   const cityInput = useRef(null);
 
   const searchLocation = () => {
@@ -9,6 +9,7 @@ function SearchBar() {
     // `${(document.getElementById("search") as HTMLInputElement).value}`
     // );
     console.log(cityInput.current.value);
+    getCityWeatherInfo(cityInput.current.value);
     return false;
   };
 
