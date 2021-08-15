@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import api from "../utils/api.json";
 
-const apiID = api.openWeatherAPIKey;
 let openWeatherMap = "http://api.openweathermap.org/data/2.5/weather";
 
 let convertToCelsius = (kelvinTemp: string) => {
@@ -28,7 +26,7 @@ function WeatherInfo() {
     }
 
     function showPosition(position: any): void {
-      openWeatherMap += `?lat=${position.coords.latitude}&lon=${position.coords.longitude}&APPID=${apiID}`;
+      openWeatherMap += `?lat=${position.coords.latitude}&lon=${position.coords.longitude}&APPID=${process.env.OPEN_WEATHER_API_KEY}`;
       callWeatherAPI();
     }
     getLocation();
