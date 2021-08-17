@@ -103,7 +103,7 @@ app.use(
     graphiql: true,
   }),
 );
-app.listen(3999, () => {
+app.listen(4000, () => {
   // eslint-disable-next-line no-console
-  console.log('Running a GraphQL API server at localhost:3999/graphql');
+  console.log('Running a GraphQL API server at localhost:4000/graphql');
 });
