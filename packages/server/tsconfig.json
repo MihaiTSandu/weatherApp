@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "module": "esnext",
+      "esModuleInterop": true,
+      "target": "es5",
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "outDir": "dist",
+      "allowJs": true,
+      "skipLibCheck": true,
+      "baseUrl": "./src"
+    },
+    "lib": ["esnext"]
+  }
