@@ -1,6 +1,6 @@
 import { OpenWeatherResponse } from "./open-weather-response";
 
-const openWeatherMapUrl = "https://api.openweathermap.org/data/2.5/weather";
+const openWeatherMapUrl = "http://api.openweathermap.org/data/2.5/weather";
 
 const getCityWeather = async (
   latitude?: string,
@@ -19,7 +19,7 @@ const getCityWeather = async (
 
   const params = {
     lat: position.coords.latitude,
-    lng: position.coords.longitude,
+    lon: position.coords.longitude,
     appid: process.env.REACT_APP_OPEN_WEATHER_API_KEY,
     units: "metric",
   };

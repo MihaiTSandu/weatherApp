@@ -77,20 +77,19 @@ export default function SearchBar({ onSubmit }: ISearchBarProps) {
           onKeyDown={didKeyPressInput}
           autoComplete="off"
           value={searchValue}
-        >
-          {searchResults.length !== 0 && (
-            <Dropdown>
-              {searchResults.map((result, resultIndex) => (
-                <DropdownSearchResult
-                  key={`${result.name}${result.lat}${result.lng}`}
-                  highlighted={resultIndex === highlightedIndex}
-                >
-                  {`${result.name}, ${result.country}`}
-                </DropdownSearchResult>
-              ))}
-            </Dropdown>
-          )}
-        </input>
+        />
+        {searchResults.length !== 0 && (
+          <Dropdown>
+            {searchResults.map((result, resultIndex) => (
+              <DropdownSearchResult
+                key={`${result.name}${result.lat}${result.lng}`}
+                highlighted={resultIndex === highlightedIndex}
+              >
+                {`${result.name}, ${result.country}`}
+              </DropdownSearchResult>
+            ))}
+          </Dropdown>
+        )}
       </SearchContainer>
 
       <button type="button" onClick={didClickSearch}>
