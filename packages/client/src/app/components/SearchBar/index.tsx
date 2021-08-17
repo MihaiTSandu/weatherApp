@@ -101,8 +101,8 @@ export default function SearchBar({ onSubmit }: ISearchBarProps) {
 
 const Dropdown = styled.div`
   background: #fff;
+  border: 0.0625rem solid #bdbdbd;
   box-sizing: border-box;
-  border: 0.0625rem solid grey;
   position: absolute;
   white-space: nowrap;
   width: 100%;

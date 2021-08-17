@@ -9,7 +9,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ext js,jsx,ts,tsx src",
     "lint:fix": "yarn lint --fix",
-    "prepare": "! test -f .env && echo REACT_APP_OPEN_WEATHER_API_KEY= >> .env"
+    "prepare": "(! test -f .env && echo REACT_APP_OPEN_WEATHER_API_KEY= >> .env) |> /dev/null"
   },
   "browserslist": {
     "production": [
@@ -59,6 +59,13 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.3.2",
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^4.0.3",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-recommended": "^5.0.0",
+    "stylelint-config-sass-guidelines": "^8.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.10.0",
+    "stylelint-scss": "^3.20.1",
+    "stylelint-selector-bem-pattern": "^2.1.1"
   }
 }
