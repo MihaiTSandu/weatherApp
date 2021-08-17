@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import SearchBar from "../../components/SearchBar";
-import { ICity } from "../../components/SearchBar/i-city";
-import WeatherInfo from "../../components/WeatherInfo";
+import SearchBar from 'app/components/SearchBar';
+import { ICity } from 'app/components/SearchBar/i-city';
+import WeatherInfo from 'app/components/WeatherInfo';
+import React, { useState } from 'react';
 
 export default function HomePage() {
   const [city, setCity] = useState<ICity>();

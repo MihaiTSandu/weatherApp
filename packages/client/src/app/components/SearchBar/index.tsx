@@ -1,10 +1,10 @@
-import cities from "cities.json";
-import React, { useState } from "react";
-import styled from "styled-components/macro";
-import { Key } from "ts-key-enum";
-import { ICity } from "./i-city";
+import { ICity } from 'app/components/SearchBar/i-city';
+import cities from 'cities.json';
+import React, { useState } from 'react';
+import styled from 'styled-components/macro';
+import { Key } from 'ts-key-enum';
 
-const INPUT_ID = "autocomplete-input";
+const INPUT_ID = 'autocomplete-input';
 
 export interface ISearchBarProps {
   onSubmit?: (city: ICity) => void;
@@ -13,14 +13,14 @@ export interface ISearchBarProps {
 export default function SearchBar({ onSubmit }: ISearchBarProps) {
   const [searchResults, setSearchResults] = useState<Array<ICity>>([]);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
 
   const didChangeInput = (event: React.FormEvent<HTMLInputElement>) => {
     const input = event.target as HTMLInputElement;
-    const inputValue = input.value.trim().toLowerCase().replaceAll(/\s/g, "");
+    const inputValue = input.value.trim().toLowerCase().replaceAll(/\s/g, '');
 
     const filteredCities = (cities as Array<ICity>).filter(({ name }) =>
-      name.trim().toLowerCase().replaceAll(/\s/g, "").startsWith(inputValue)
+      name.trim().toLowerCase().replaceAll(/\s/g, '').startsWith(inputValue),
     );
 
     setSearchResults(inputValue.length === 0 ? [] : filteredCities.slice(0, 5));
@@ -35,7 +35,7 @@ export default function SearchBar({ onSubmit }: ISearchBarProps) {
         setHighlightedIndex(
           highlightedIndex === searchResults.length - 1
             ? 0
-            : highlightedIndex + 1
+            : highlightedIndex + 1,
         );
         break;
 
@@ -45,7 +45,7 @@ export default function SearchBar({ onSubmit }: ISearchBarProps) {
         setHighlightedIndex(
           highlightedIndex === 0
             ? searchResults.length - 1
-            : highlightedIndex - 1
+            : highlightedIndex - 1,
         );
         break;
 
@@ -59,7 +59,7 @@ export default function SearchBar({ onSubmit }: ISearchBarProps) {
     onSubmit?.(
       highlightedIndex === -1
         ? ({ name: (event.target as HTMLInputElement).value } as ICity)
-        : searchResults[highlightedIndex]
+        : searchResults[highlightedIndex],
     );
     setSearchValue(searchResults[highlightedIndex].name);
     setSearchResults([]);
@@ -109,7 +109,7 @@ const Dropdown = styled.div`
 `;
 
 const DropdownSearchResult = styled.div<{ highlighted: boolean }>`
-  background: ${(p) => (p.highlighted ? "#42a5f5" : "transparent")};
+  background: ${p => (p.highlighted ? '#42a5f5' : 'transparent')};
   overflow: hidden;
   text-overflow: ellipsis;
 `;

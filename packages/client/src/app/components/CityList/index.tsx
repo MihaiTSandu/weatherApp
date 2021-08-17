@@ -1,6 +1,6 @@
-import { useQuery } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
-import React from "react";
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import React from 'react';
 
 const getCityQuery = gql`
   {
@@ -13,6 +13,7 @@ const getCityQuery = gql`
 
 export default function CityList() {
   const { data } = useQuery(getCityQuery);
+  // eslint-disable-next-line no-console
   console.log(data);
 
   return (

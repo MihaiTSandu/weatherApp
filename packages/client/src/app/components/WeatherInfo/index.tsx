@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
-import Skeleton from "react-loading-skeleton";
-import styled from "styled-components/macro";
-import getCityWeather from "../../../utils/getCityWeather";
+import React, { useCallback, useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import styled from 'styled-components/macro';
+import getCityWeather from 'utils/getCityWeather';
 
 export interface IWeatherInfoProps {
   latitude?: string;
@@ -46,7 +46,7 @@ export default function WeatherInfo({
           </b>
         </h2>
         <p>
-          Feels like{" "}
+          Feels like{' '}
           {feelsLike ? `${feelsLike.toFixed()}°C` : <Skeleton width={30} />}
         </p>
       </div>

@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components/macro";
-import HomePage from ".//pages/HomePage";
+import HomePage from 'app/pages/HomePage';
+import React from 'react';
+import styled from 'styled-components/macro';
 
 function App() {
   return (

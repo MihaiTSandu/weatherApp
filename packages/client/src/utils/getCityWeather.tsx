@@ -1,10 +1,10 @@
-import { OpenWeatherResponse } from "./open-weather-response";
+import { OpenWeatherResponse } from './open-weather-response';
 
-const openWeatherMapUrl = "http://api.openweathermap.org/data/2.5/weather";
+const openWeatherMapUrl = 'http://api.openweathermap.org/data/2.5/weather';
 
 const getCityWeather = async (
   latitude?: string,
-  longitude?: string
+  longitude?: string,
 ): Promise<OpenWeatherResponse> => {
   let position: any = {
     coords: {
@@ -21,7 +21,7 @@ const getCityWeather = async (
     lat: position.coords.latitude,
     lon: position.coords.longitude,
     appid: process.env.REACT_APP_OPEN_WEATHER_API_KEY,
-    units: "metric",
+    units: 'metric',
   };
 
   try {
@@ -29,17 +29,17 @@ const getCityWeather = async (
       await fetch(`${openWeatherMapUrl}?${new URLSearchParams(params as any)}`)
     ).json();
 
-    return new Promise((resolve) => resolve(data));
+    return new Promise(resolve => resolve(data));
   } catch {
-    return new Promise((resolve) => resolve(null));
+    return new Promise(resolve => resolve(null));
   }
 };
 
 const getCoordinates = async (): Promise<GeolocationPosition> =>
-  new Promise((resolve) => {
+  new Promise(resolve => {
     navigator.geolocation.getCurrentPosition(
-      (position) => resolve(position),
-      () => resolve(null)
+      position => resolve(position),
+      () => resolve(null),
     );
   });
 
