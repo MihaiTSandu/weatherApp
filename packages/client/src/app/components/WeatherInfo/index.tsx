@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import styled from 'styled-components/macro';
-import getCityWeather from 'utils/getCityWeather';
+import getCityWeather from 'utils/get-city-weather';
 
 export interface IWeatherInfoProps {
   latitude?: string;
