@@ -18,7 +18,6 @@ export default function WeatherInfo({
 
   const getLocalWeatherInfo = useCallback(async () => {
     const data = await getCityWeather(latitude, longitude);
-
     setTemperature(data.main.temp);
     setFeelsLike(data.main.feels_like);
     setLocation(data.name);

@@ -85,7 +85,8 @@ export default function SearchBar({ onSubmit }: ISearchBarProps) {
                 key={`${result.name}${result.lat}${result.lng}`}
                 highlighted={resultIndex === highlightedIndex}
               >
-                {`${result.name}, ${result.country}`}
+                <b>{`${searchValue}`}</b>
+                {`${result.name.slice(searchValue.length)}, ${result.country}`}
               </DropdownSearchResult>
             ))}
           </Dropdown>
