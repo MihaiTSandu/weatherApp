@@ -24,7 +24,7 @@ export default function SearchBar({ onSubmit }: ISearchBarProps) {
     );
 
     setSearchResults(inputValue.length === 0 ? [] : filteredCities.slice(0, 5));
-    setSearchValue(inputValue);
+    setSearchValue(input.value);
   };
 
   const didKeyPressInput = (event: React.KeyboardEvent<HTMLInputElement>) => {

@@ -1,28 +1,46 @@
+// eslint-disable-next-line max-classes-per-file
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
 const fs = require('fs');
 
-// Reading the json file
-
 const schema = buildSchema(`
+
+  input UserInput {
+    cities: [CityInput]
+  }
+
+  type User {
+    name: String
+    id: ID!
+    cities: [City]
+  }
+
   input CityInput {
     name: String
     latitude: Float
     longitude: Float
+    owner: UserInput
   }
+
   type City {
     id: ID!
     name: String
     latitude: Float
     longitude: Float
+    owner: User
   }
+
   type Query {
     getCity(id: ID!): City
+    getUser(id: ID!): User
   }
+
   type Mutation {
     createCity(input: CityInput): City
     updateCity(id: ID!, input: CityInput): City
+    createUser(input: UserInput) : User
+    updateUser(id: ID!, input: UserInput) : User
   }
 `);
 
@@ -30,6 +48,12 @@ interface ICityInfo {
   name: string;
   latitude: number;
   longitude: number;
+  owner: IUserInfo;
+}
+
+interface IUserInfo {
+  name: string;
+  cities: ICityInfo[];
 }
 
 // If City had any complex fields, we'd put them on this object.
@@ -40,11 +64,28 @@ class City {
 
   longitude: ICityInfo['longitude'];
 
-  constructor(public id: any, { name, latitude, longitude }: ICityInfo) {
+  owner: IUserInfo;
+
+  constructor(public id: any, {
+    name, latitude, longitude, owner,
+  }: ICityInfo) {
     this.id = id;
     this.name = name;
     this.latitude = latitude;
     this.longitude = longitude;
+    this.owner = owner;
+  }
+}
+
+class User {
+  name: IUserInfo['name'];
+
+  cities: ICityInfo[];
+
+  constructor(public id: any, { name, cities }: IUserInfo) {
+    this.id = id;
+    this.name = name;
+    this.cities = cities;
   }
 }
 
@@ -52,7 +93,7 @@ class City {
 let fakeDatabase = {};
 
 const root = {
-  getCity: ({ id }) => {
+  getUser: ({ id }) => {
     fs.readFile('saved-cities.json', 'utf-8', (err, data) => {
       if (err) {
         // eslint-disable-next-line no-console
@@ -62,10 +103,43 @@ const root = {
       }
     });
     if (!fakeDatabase[id]) {
-      throw new Error(`no city exists with id ${id}`);
+      throw new Error(`no user exists with id ${id}`);
     }
-    return new City(id, fakeDatabase[id]);
+    return new User(id, fakeDatabase[id]);
   },
+
+  // getCity: ({ id }) => {
+  //   fs.readFile('saved-cities.json', 'utf-8', (err, data) => {
+  //     if (err) {
+  //       // eslint-disable-next-line no-console
+  //       console.error(err);
+  //     } else {
+  //       fakeDatabase = JSON.parse(data);
+  //     }
+  //   });
+  //   if (!fakeDatabase[id]) {
+  //     throw new Error(`no city exists with id ${id}`);
+  //   }
+  //   return new City(id, fakeDatabase[id]);
+  // },
+
+  createUser: ({ input }) => {
+    fs.readFile('saved-cities.json', 'utf-8', async (err, data) => {
+      if (err) {
+        // eslint-disable-next-line no-console
+        console.error(err);
+      } else {
+        fakeDatabase = JSON.parse(data);
+      }
+    });
+    const id = Object.keys(fakeDatabase).length + 1;
+
+    fakeDatabase[id] = input;
+    fs.writeFile('saved-cities.json', JSON.stringify(fakeDatabase), () => { });
+
+    return new User(id, input);
+  },
+
   createCity: ({ input }) => {
     // Create a random id for our "database".
     // const id = require("crypto").randomBytes(10).toString("hex");
@@ -75,8 +149,10 @@ const root = {
         console.error(err);
       } else {
         fakeDatabase = JSON.parse(data);
+        console.log(fakeDatabase);
       }
     });
+    //  !!! ???
     const id = Object.keys(fakeDatabase).length + 1;
 
     fakeDatabase[id] = input;
@@ -92,6 +168,10 @@ const root = {
     fakeDatabase[id] = input;
     return new City(id, input);
   },
+  // updateUser: ({ id, input }) => {
+  //   let user;
+  //   return user;
+  // },
 };
 
 const app = express();

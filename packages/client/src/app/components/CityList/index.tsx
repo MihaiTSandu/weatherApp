@@ -12,7 +12,7 @@ const getCityQuery = gql`
 `;
 
 export default function CityList() {
-  const { data } = useQuery(getCityQuery);
+  const data = useQuery(getCityQuery);
   // eslint-disable-next-line no-console
   console.log(data);
 
