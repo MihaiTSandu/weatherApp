@@ -67,12 +67,12 @@ export default function SearchBar({ onSubmit }: ISearchBarProps) {
   };
 
   return (
-    <StyledNav>
+    <SearchBarContainer>
       <SearchContainer htmlFor={INPUT_ID}>
-        <input
+        <StyledInput
           id={INPUT_ID}
           type="text"
-          placeholder="Search"
+          placeholder="Enter a city"
           onInput={didChangeInput}
           onKeyDown={didKeyPressInput}
           autoComplete="off"
@@ -93,10 +93,12 @@ export default function SearchBar({ onSubmit }: ISearchBarProps) {
         )}
       </SearchContainer>
 
-      <button type="button" onClick={didClickSearch}>
-        Search
-      </button>
-    </StyledNav>
+      <ButtonContainer>
+        <SearchButton type="button" onClick={didClickSearch}>
+          GET WEATHER
+        </SearchButton>
+      </ButtonContainer>
+    </SearchBarContainer>
   );
 }
 
@@ -119,10 +121,42 @@ const SearchContainer = styled.label`
   position: relative;
 `;
 
-const StyledNav = styled.nav`
-  background: #f5f5f5;
+const SearchBarContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   padding: 1.25rem;
+  width: 100%;
+`;
+
+const SearchButton = styled.button`
+  background: #fff;
+  border: 0;
+  border-radius: 0.1875rem;
+  color: #00acc1;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 1.25rem 2.5rem;
+`;
+
+const StyledInput = styled.input`
+  background: transparent;
+  border: 0.1875rem solid #fff;
+  border-radius: 0.1875rem;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 0 2.5rem 2.5rem;
+  padding: 1.25rem 0;
+  text-align: center;
+  width: 100%;
+
+  ::placeholder {
+    color: #fff;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  text-align: center;
 `;
