@@ -17,6 +17,7 @@
     "prestart": "kill-port --port 3000,4000",
     "start": "lerna run start --stream",
     "lint": "lerna run lint",
-    "prettify": "prettier --write ."
+    "prettify": "prettier --write .",
+    "build": "lerna run build --stream"
   }
 }
