@@ -9,7 +9,7 @@ import {
   FlattenInterpolation,
   Interpolation,
   InterpolationFunction,
-  ThemedStyledProps
+  ThemedStyledProps,
 } from 'styled-components/macro';
 
 /*

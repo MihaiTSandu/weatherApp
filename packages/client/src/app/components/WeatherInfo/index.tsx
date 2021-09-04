@@ -29,8 +29,6 @@ export default function WeatherInfo({
     if (!data) {
       // TODO: implement
     } else {
-      console.log(data);
-
       switch (data.weather[0].icon) {
         case '01d':
           weatherIconDesign.icon = 'CLEAR_DAY';
@@ -94,9 +92,9 @@ export default function WeatherInfo({
     getLocalWeatherInfo();
   }, [getLocalWeatherInfo]);
 
-  const handleSave = (): void => {
-    // TODO: implement
-  };
+  // const handleSave = (): void => {
+  //   // TODO: implement
+  // };
 
   return (
     <WeatherInfoContainer>
