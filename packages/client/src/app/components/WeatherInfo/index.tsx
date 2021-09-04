@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import ReactAnimatedWeather from 'react-animated-weather';
 import Skeleton from 'react-loading-skeleton';
 import styled from 'styled-components/macro';
 import getCityWeather from 'utils/get-city-weather';
@@ -8,12 +9,19 @@ export interface IWeatherInfoProps {
   longitude?: string;
 }
 
+const weatherIconDesign = {
+  icon: 'PARTLY_CLOUDY_DAY',
+  color: '#00ACC1',
+  size: 192,
+  animate: true,
+};
+
 export default function WeatherInfo({
   latitude,
   longitude,
 }: IWeatherInfoProps) {
   const [temperature, setTemperature] = useState<number>();
-  const [feelsLike, setFeelsLike] = useState<number>();
+  // const [feelsLike, setFeelsLike] = useState<number>();
   const [location, setLocation] = useState<string>();
 
   const getLocalWeatherInfo = useCallback(async () => {
@@ -21,8 +29,63 @@ export default function WeatherInfo({
     if (!data) {
       // TODO: implement
     } else {
+      console.log(data);
+
+      switch (data.weather[0].icon) {
+        case '01d':
+          weatherIconDesign.icon = 'CLEAR_DAY';
+          break;
+        case '01n':
+          weatherIconDesign.icon = 'CLEAR_NIGHT';
+          break;
+        case '02d':
+          weatherIconDesign.icon = 'PARTLY_CLOUDY_DAY';
+          break;
+        case '02n':
+          weatherIconDesign.icon = 'PARTLY_CLOUDY_NIGHT';
+          break;
+        case '03d':
+          weatherIconDesign.icon = 'CLOUDY';
+          break;
+        case '03n':
+          weatherIconDesign.icon = 'CLOUDY';
+          break;
+        case '04d':
+          weatherIconDesign.icon = 'CLOUDY';
+          break;
+        case '04n':
+          weatherIconDesign.icon = 'CLOUDY';
+          break;
+        case '09d':
+          weatherIconDesign.icon = 'RAIN';
+          break;
+        case '09n':
+          weatherIconDesign.icon = 'RAIN';
+          break;
+        case '10d':
+          weatherIconDesign.icon = 'RAIN';
+          break;
+        case '10n':
+          weatherIconDesign.icon = 'RAIN';
+          break;
+        case '13d':
+          weatherIconDesign.icon = 'SNOW';
+          break;
+        case '13n':
+          weatherIconDesign.icon = 'SNOW';
+          break;
+        case '50d':
+          weatherIconDesign.icon = 'FOG';
+          break;
+        case '50n':
+          weatherIconDesign.icon = 'FOG';
+          break;
+        default:
+          weatherIconDesign.icon = 'WIND';
+          break;
+      }
       setTemperature(data.main.temp);
-      setFeelsLike(data.main.feels_like);
+      // setFeelsLike(data.main.feels_like);
       setLocation(data.name);
     }
   }, [latitude, longitude]);
@@ -37,25 +100,25 @@ export default function WeatherInfo({
 
   return (
     <WeatherInfoContainer>
-      <h1>{location || <Skeleton width={300} />}</h1>
+      <LocationHeader>{location || <Skeleton width={300} />}</LocationHeader>
+      <ReactAnimatedWeather
+        icon={weatherIconDesign.icon}
+        color={weatherIconDesign.color}
+        size={weatherIconDesign.size}
+        animate={weatherIconDesign.animate}
+      />
       <div>
-        <h2>
-          <b>
-            {temperature ? (
-              `${temperature.toFixed()}°C`
-            ) : (
-              <Skeleton width={50} />
-            )}
-          </b>
-        </h2>
-        <p>
+        <TemperatureHeader>
+          {temperature ? `${temperature.toFixed()}°C` : <Skeleton width={50} />}
+        </TemperatureHeader>
+        {/* <p>
           Feels like{' '}
           {feelsLike ? `${feelsLike.toFixed()}°C` : <Skeleton width={30} />}
-        </p>
+        </p> */}
       </div>
-      <button type="button" onClick={handleSave}>
+      {/* <button type="button" onClick={handleSave}>
         Save Location
-      </button>
+      </button> */}
     </WeatherInfoContainer>
   );
 }
@@ -63,4 +126,20 @@ export default function WeatherInfo({
 const WeatherInfoContainer = styled.div`
   margin: 1.25rem;
   text-align: center;
+`;
+
+const LocationHeader = styled.h1`
+  color: #00acc1;
+  font-family: 'Raleway', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 4rem;
+  font-weight: 500;
+`;
+
+const TemperatureHeader = styled.h1`
+  color: #00acc1;
+  font-family: 'Raleway', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 4rem;
+  font-weight: 500;
 `;

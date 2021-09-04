@@ -45,6 +45,9 @@ const HomePageContainer = styled.div`
 `;
 const Header = styled.div`
   color: #fff;
+  font-family: 'Raleway', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 4rem;
+  font-weight: 500;
   margin-bottom: 8rem;
 `;

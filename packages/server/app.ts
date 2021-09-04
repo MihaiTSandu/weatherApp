@@ -140,26 +140,26 @@ const root = {
     return new User(id, input);
   },
 
-  createCity: ({ input }) => {
-    // Create a random id for our "database".
-    // const id = require("crypto").randomBytes(10).toString("hex");
-    fs.readFile('saved-cities.json', 'utf-8', async (err, data) => {
-      if (err) {
-        // eslint-disable-next-line no-console
-        console.error(err);
-      } else {
-        fakeDatabase = JSON.parse(data);
-        console.log(fakeDatabase);
-      }
-    });
-    //  !!! ???
-    const id = Object.keys(fakeDatabase).length + 1;
+  // createCity: ({ input }) => {
+  //   // Create a random id for our "database".
+  //   // const id = require("crypto").randomBytes(10).toString("hex");
+  //   fs.readFile('saved-cities.json', 'utf-8', async (err, data) => {
+  //     if (err) {
+  //       // eslint-disable-next-line no-console
+  //       console.error(err);
+  //     } else {
+  //       fakeDatabase = JSON.parse(data);
+  //       console.log(fakeDatabase);
+  //     }
+  //   });
+  //   //  !!! ???
+  //   const id = Object.keys(fakeDatabase).length + 1;
 
-    fakeDatabase[id] = input;
-    fs.writeFile('saved-cities.json', JSON.stringify(fakeDatabase), () => {});
+  //   fakeDatabase[id] = input;
+  //   fs.writeFile('saved-cities.json', JSON.stringify(fakeDatabase), () => {});
 
-    return new City(id, input);
-  },
+  //   return new City(id, input);
+  // },
   updateCity: ({ id, input }) => {
     if (!fakeDatabase[id]) {
       throw new Error(`no city exists with id ${id}`);
