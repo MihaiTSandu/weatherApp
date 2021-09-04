@@ -3,6 +3,7 @@ import { ICity } from 'app/components/SearchBar/i-city';
 import WeatherInfo from 'app/components/WeatherInfo';
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
+import { media } from 'styles/media';
 
 export default function HomePage() {
   const [city, setCity] = useState<ICity>();
@@ -35,19 +36,27 @@ const ResultContainer = styled.div`
 `;
 
 const SearchContainer = styled(ResultContainer)`
-  background-color: #00acc1;
+  background-color: #007c91;
+  border-radius: 0.1875rem;
+  height: calc(100vh - 2.5rem);
+  margin: 1.25rem;
 `;
 
 const HomePageContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 100vh;
+
+  ${media.medium`
+    flex-direction: row;
+  `}
 `;
+
 const Header = styled.div`
   color: #fff;
-  font-family: 'Raleway', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 4rem;
   font-weight: 500;
-  margin-bottom: 8rem;
+  margin: 0 2.5rem 8rem;
+  text-align: center;
 `;

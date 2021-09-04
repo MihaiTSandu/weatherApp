@@ -11,7 +11,7 @@ export interface IWeatherInfoProps {
 
 const weatherIconDesign = {
   icon: 'PARTLY_CLOUDY_DAY',
-  color: '#00ACC1',
+  color: '#007c91',
   size: 192,
   animate: true,
 };
@@ -129,17 +129,15 @@ const WeatherInfoContainer = styled.div`
 `;
 
 const LocationHeader = styled.h1`
-  color: #00acc1;
-  font-family: 'Raleway', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: #007c91;
+  font-family: 'Raleway', sans-serif;
   font-size: 4rem;
   font-weight: 500;
 `;
 
 const TemperatureHeader = styled.h1`
-  color: #00acc1;
-  font-family: 'Raleway', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: #007c91;
+  font-family: 'Raleway', sans-serif;
   font-size: 4rem;
   font-weight: 500;
 `;
