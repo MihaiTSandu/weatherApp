@@ -2,6 +2,7 @@
   "name": "weather-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mihaitsandu.github.io/weatherApp",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
