@@ -12,6 +12,10 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Create env
+        run: |
+          echo REACT_APP_OPEN_WEATHER_API_KEY=${{ secrets.REACT_APP_OPEN_WEATHER_API_KEY }} >> packages/client/.env
+
       - name: Install and Build
         run: |
           yarn
