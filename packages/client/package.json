@@ -10,7 +10,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ext js,jsx,ts,tsx src",
     "lint:fix": "yarn lint --fix",
-    "prepare": "(! test -f .env && echo REACT_APP_OPEN_WEATHER_API_KEY= >> .env) |> /dev/null"
+    "prepare": "! $CI && (! test -f .env && echo REACT_APP_OPEN_WEATHER_API_KEY= >> .env) |> /dev/null || >> /dev/null"
   },
   "browserslist": {
     "production": [

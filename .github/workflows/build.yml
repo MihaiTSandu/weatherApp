@@ -2,7 +2,10 @@ name: build
 on:
   push:
     branches:
-      - master
+      - main
+env:
+  REACT_APP_OPEN_WEATHER_API_KEY: ${{ secrets.REACT_APP_OPEN_WEATHER_API_KEY }}
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -12,14 +15,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Create env
-        env:
-          REACT_APP_OPEN_WEATHER_API_KEY: ${{ secrets.REACT_APP_OPEN_WEATHER_API_KEY }}
-        run: |
-          echo REACT_APP_OPEN_WEATHER_API_KEY=$REACT_APP_OPEN_WEATHER_API_KEY >> packages/client/.env
-
       - name: Install and Build
-
         run: |
           yarn
           yarn build
