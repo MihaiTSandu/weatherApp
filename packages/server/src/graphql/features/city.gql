@@ -1,0 +1,9 @@
+# import User from "user.gql"
+
+type City {
+  id: ID!
+  name: String
+  latitude: Float
+  longitude: Float
+  owner: User
+}

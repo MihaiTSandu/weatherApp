@@ -1,0 +1,11 @@
+# import City from "city.gql"
+# import CityInput from "city-input.gql"
+# import User from "user.gql"
+# import UserInput from "user-input.gql"
+
+type Mutation {
+  createCity(input: CityInput): City
+  updateCity(id: ID!, input: CityInput): City
+  createUser(input: UserInput): User
+  updateUser(id: ID!, input: UserInput): User
+}

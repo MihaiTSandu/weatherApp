@@ -1,0 +1,8 @@
+# import UserInput from "user-input.gql"
+
+input CityInput {
+  name: String
+  latitude: Float
+  longitude: Float
+  owner: UserInput
+}

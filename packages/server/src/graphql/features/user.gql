@@ -1,0 +1,7 @@
+# import City from "./city.gql"
+
+type User {
+  name: String
+  id: ID!
+  cities: [City]
+}

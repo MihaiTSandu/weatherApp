@@ -1,0 +1,5 @@
+# import CityInput from "city-input.gql"
+
+input UserInput {
+  cities: [CityInput]
+}

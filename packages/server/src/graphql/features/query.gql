@@ -1,0 +1,7 @@
+# import City from "./city.gql"
+# import User from "./user.gql"
+
+type Query {
+  getCity(id: ID!): City
+  getUser(id: ID!): User
+}
