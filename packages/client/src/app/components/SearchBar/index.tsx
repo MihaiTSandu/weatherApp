@@ -68,6 +68,11 @@ export default function SearchBar({ onSubmit }: ISearchBarProps) {
     (event.target as HTMLInputElement).blur();
   };
 
+  const didHoverSearchResult = (index: number) => {
+    setHighlightedIndex(index);
+    console.log(index);
+  };
+
   return (
     <SearchBarContainer>
       <SearchContainer htmlFor={INPUT_ID}>
@@ -84,6 +89,9 @@ export default function SearchBar({ onSubmit }: ISearchBarProps) {
           <Dropdown>
             {searchResults.map((result, resultIndex) => (
               <DropdownSearchResult
+                type="button"
+                onClick={didClickSearch}
+                onMouseOver={() => didHoverSearchResult(resultIndex)}
                 key={`${result.name}${result.lat}${result.lng}`}
                 highlighted={resultIndex === highlightedIndex}
               >
@@ -117,12 +125,15 @@ const Dropdown = styled.div`
   width: calc(100% - 5rem);
 `;
 
-const DropdownSearchResult = styled.div<{ highlighted: boolean }>`
+const DropdownSearchResult = styled.button<{ highlighted: boolean }>`
   background: ${p => (p.highlighted ? '#eceff1' : 'transparent')};
+  border: 0;
+  display: flex;
   font-family: 'Raleway', sans-serif;
   overflow: hidden;
   padding: 0.625rem 1.25rem;
   text-overflow: ellipsis;
+  width: 100%;
 `;
 
 const SearchContainer = styled.label`
