@@ -70,7 +70,6 @@ export default function SearchBar({ onSubmit }: ISearchBarProps) {
 
   const didHoverSearchResult = (index: number) => {
     setHighlightedIndex(index);
-    console.log(index);
   };
 
   return (

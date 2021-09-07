@@ -25,11 +25,15 @@ const getCityWeather = async (
   };
 
   try {
-    const data = await (
+    const data: OpenWeatherResponse = await (
       await fetch(
         `${OPEN_WEATHER_MAP_URL}?${new URLSearchParams(params as any)}`,
       )
     ).json();
+
+    if (data.cod !== 200) {
+      throw new Error('Invalid Response');
+    }
 
     return new Promise(resolve => resolve(data));
   } catch {
